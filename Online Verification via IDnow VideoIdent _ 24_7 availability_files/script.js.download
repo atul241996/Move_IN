@@ -1,0 +1,68 @@
+window.addEventListener('DOMContentLoaded', () => {
+
+    const menuSpanEls = document.querySelectorAll('.menu-item-title');
+    for (let menuSpanEl of menuSpanEls) {
+        menuSpanEl.addEventListener('click', (e) => {
+            if (menuSpanEl.innerHTML == "eSign" || menuSpanEl.innerHTML == "eSign" || menuSpanEl.innerHTML == "eSign") {
+                removeClassesTab();
+                addClassesTab('tab41');
+            } else if (menuSpanEl.innerHTML == "AML screening and monitoring" || menuSpanEl.innerHTML == "Contrôle et surveillance LBC" || menuSpanEl.innerHTML == "AML Screening") {
+                removeClassesTab();
+                addClassesTab('tab42');
+            } else if (menuSpanEl.innerHTML == "Identification archiving" || menuSpanEl.innerHTML == "Archivage des identifications" || menuSpanEl.innerHTML == "Archivierung") {
+                removeClassesTab();
+                addClassesTab('tab43');
+            } else if (menuSpanEl.innerHTML == "Address verification" || menuSpanEl.innerHTML == "Vérification des adresses" || menuSpanEl.innerHTML == "Adressprüfung") {
+                removeClassesTab();
+                addClassesTab('tab44');
+            } else if (menuSpanEl.innerHTML == "Flexible delivery model" || menuSpanEl.innerHTML == "Modèle de prestation flexible" || menuSpanEl.innerHTML == "Flexibles Delivery-Modell") {
+                removeClassesTab();
+                addClassesTab('tab45');
+            }
+        });
+    }
+    function removeClassesTab() {
+        const tabs = document.querySelectorAll("[data-tab]");
+        for (let tab of tabs) {
+
+            if (tab.closest(".tabs-menu.tabs-menu-3")) {
+                const perentTab = tab.closest(".tabs-menu.tabs-menu-3");
+                const activeLi = perentTab.querySelector(".active");
+                if (activeLi) {
+                    activeLi.classList.remove('active');
+                }
+            }
+        }
+    }
+
+    function addClassesTab(id) {
+        const dataTabId = document.querySelectorAll("[data-tab]");
+        for (let tab of dataTabId) {
+            const tabsContent = tab.dataset.tab;
+            if (tabsContent == id) {
+                const contentBlock = document.querySelectorAll(`.${id}`);
+                const contensBlockEls = document.querySelectorAll(".tab-content.tab-content-3");
+                for (let elem of contensBlockEls) {
+                    const swiperContent = document.querySelectorAll('.swiper-slide.tab-content.tab-content-3');
+                    elem.style.cssText += 'display: none;';
+                    for (let swip of swiperContent) {
+                        swip.style.cssText += 'display: block;';
+                    }
+                }
+                for (let elem of contentBlock) {
+                    elem.style.cssText += 'display: block;';
+                }
+                tab.classList.add('active');
+                function test(id) {
+                    const replase = id.replace('tab4', '');
+                    const slideBtn = document.querySelector(`.tab-slide-${replase}`)
+                    if (slideBtn) {
+                        slideBtn.click();
+                    }
+                }
+                test(id);
+            }
+        }
+    }
+
+});
